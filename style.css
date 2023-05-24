@@ -121,10 +121,38 @@ body {
 }
 
 .titulo {
+  text-align: center;
   font-family: "Josefin Sans";
   font-style: normal;
   font-weight: 700;
   font-size: 25px;
   line-height: 25px;
-  color: #;
+  margin-bottom: 1rem;
 }
+
+.text-button {
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  background-color: gray;
+  margin: 0.2rem 1.4rem;
+  padding: 1rem;
+  color: aliceblue;
+}
+button {
+  text-align: center;
+  margin: 0.2rem 1.4rem;
+  padding: 1.5rem;
+  border-radius: 7px;
+  background-color: #222;
+  font-weight: 700;
+  cursor: pointer;
+  color: aliceblue;
+}
+
+.endosos {
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 0.5rem;
