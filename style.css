@@ -115,7 +115,16 @@ body {
 }
 
 .logo {
-  width: 50%;
-  margin-left: 5rem;
-  padding: 1rem;
+  width: 55px;
+  margin-inline: 11rem;
+  padding: 0.5rem;
+}
+
+.titulo {
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 25px;
+  color: #;
 }
