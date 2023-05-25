@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../style.css";
 
 function App() {
   const [comentarios, setComentarios] = useState([]);
   const [nuevoComentario, setNuevoComentario] = useState("");
+
+  useEffect(() => {
+    const comentariosGuardados = localStorage.getItem("comentarios");
+    console.log(comentariosGuardados);
+    if (comentariosGuardados) {
+      setComentarios(JSON.parse(comentariosGuardados));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("comentarios", JSON.stringify(comentarios));
+  }, [comentarios]);
 
   const handleComentarioChange = (event) => {
     setNuevoComentario(event.target.value);
@@ -31,6 +43,7 @@ function App() {
             value={nuevoComentario}
             onChange={handleComentarioChange}
             rows={3}
+            cols={20}
           />
         </div>
         <button onClick={handleComentarioSubmit}>Publicar</button>
