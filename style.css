@@ -106,11 +106,13 @@ display:revert; revert to element instead of attribute */
 
 body {
   background-color: brown;
+  min-height: 100dvh;
 }
 
 .container {
   margin: 0 auto;
-  max-width: 412px;
+  width: 412px;
+  min-height: 780px;
   background-color: bisque;
 }
 
@@ -135,6 +137,9 @@ body {
   flex-direction: column;
 }
 
+#text-area {
+  width: 100%;
+}
 .textarea {
   background-color: gray;
   margin: 0.2rem 1.4rem;
@@ -156,3 +161,20 @@ button {
   font-size: 1.2rem;
   text-align: center;
   padding: 0.5rem;
+}
+
+.endoso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+p {
+  padding: 2rem;
+  margin: 0.2rem 1.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: gray;
+  width: 88%;
+}
