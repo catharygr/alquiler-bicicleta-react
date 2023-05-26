@@ -146,6 +146,27 @@ body {
   padding: 1rem;
   color: aliceblue;
 }
+
+.de-a {
+  display: flex;
+  color: aliceblue;
+  text-align: center;
+}
+
+#de {
+  display: inline-block;
+  background-color: gray;
+  margin: 0.2rem 1.4rem;
+  height: 40px;
+}
+
+#a {
+  display: inline-block;
+  background-color: gray;
+  margin: 0.2rem 1.4rem;
+  height: 40px;
+}
+
 button {
   text-align: center;
   margin: 0.2rem 1.4rem;
