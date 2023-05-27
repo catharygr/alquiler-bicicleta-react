@@ -25,6 +25,7 @@ function App() {
 
   const handleComentarioSubmit = (event) => {
     event.preventDefault();
+
     setComentarios((prevComentarios) => {
       const nuevosComentarios = [...prevComentarios, nuevoComentario];
       return nuevosComentarios.slice(-3);
@@ -37,20 +38,16 @@ function App() {
       <img className="logo" src="./image/cathy.png" alt="" />
       <h2 className="titulo">Somo los campeones</h2>
       <form className="text-button">
-        <div className="textarea">
-          <label htmlFor="text-area"></label>
-          <textarea
-            id="text-area"
-            placeholder="Escribe tu comentario aquí"
-            value={nuevoComentario}
-            onChange={handleComentarioChange}
-            rows={3}
-          />
-        </div>
+        <textarea
+          className="textarea"
+          placeholder="Escribe tu comentario aquí"
+          value={nuevoComentario}
+          onChange={handleComentarioChange}
+          rows={3}
+        />
+
         <div className="de-a">
-          <label htmlFor="de"></label>
           <input id="de" type="text" placeholder="De" />
-          <label htmlFor="a"></label>
           <input id="a" type="text" placeholder="A" />
         </div>
         <button onClick={handleComentarioSubmit}>Publicar</button>

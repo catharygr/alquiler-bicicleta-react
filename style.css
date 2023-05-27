@@ -110,16 +110,20 @@ body {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   width: 412px;
   min-height: 780px;
   background-color: bisque;
+  padding: 1rem;
 }
 
 .logo {
   width: 55px;
-  margin-inline: 11rem;
+  /* margin-inline: 11rem; */
   padding: 0.5rem;
+  align-self: center;
 }
 
 .titulo {
@@ -135,41 +139,41 @@ body {
 .text-button {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
 }
 
-#text-area {
-  width: 100%;
-}
 .textarea {
   background-color: gray;
-  margin: 0.2rem 1.4rem;
   padding: 1rem;
   color: aliceblue;
+  width: 100%;
 }
 
 .de-a {
   display: flex;
+  justify-content: space-between;
   color: aliceblue;
   text-align: center;
+  gap: 0.5rem;
 }
 
 #de {
   display: inline-block;
   background-color: gray;
-  margin: 0.2rem 1.4rem;
   height: 40px;
+  width: 100%;
 }
 
 #a {
   display: inline-block;
   background-color: gray;
-  margin: 0.2rem 1.4rem;
   height: 40px;
+  width: 100%;
 }
 
 button {
   text-align: center;
-  margin: 0.2rem 1.4rem;
   padding: 1.5rem;
   border-radius: 7px;
   background-color: #222;
