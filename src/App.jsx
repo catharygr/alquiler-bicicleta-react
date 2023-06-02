@@ -7,6 +7,10 @@ function App() {
   const [de, setDe] = useState("");
   const [a, setA] = useState("");
 
+  const mapeo = comentarios.map((comentario, index) => (
+    <p key={index}>{comentario}</p>
+  ));
+
   useEffect(() => {
     const comentariosGuardados = localStorage.getItem("comentarios");
     if (comentariosGuardados) {
@@ -25,7 +29,7 @@ function App() {
   const handleComentarioSubmit = (event) => {
     event.preventDefault();
 
-    const comentario = `De: ${de} A: ${a}\n${nuevoComentario}`;
+    const comentario = `De: ${de} A: ${a}\n ${nuevoComentario}`;
 
     setComentarios((prevComentarios) => {
       const nuevosComentarios = [...prevComentarios, comentario];
@@ -62,6 +66,7 @@ function App() {
             value={de}
             onChange={(event) => setDe(event.target.value)}
           />
+          <br />
           <input
             id="a"
             type="text"
@@ -73,11 +78,7 @@ function App() {
         <button onClick={handleComentarioSubmit}>Publicar</button>
       </form>
       <h2 className="endosos">-Endosos-</h2>
-      <div className="endoso">
-        {comentarios.map((comentario, index) => (
-          <p key={index}>{comentario}</p>
-        ))}
-      </div>
+      <div className="endoso">{mapeo}</div>
     </div>
   );
 }
