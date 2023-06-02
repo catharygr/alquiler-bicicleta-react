@@ -183,7 +183,7 @@ button {
 }
 
 .endosos {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-align: center;
   padding: 0.5rem;
 }
@@ -201,5 +201,7 @@ p {
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: gray;
-  width: 88%;
+  width: 100%;
+  color: aliceblue;
+  font-size: 1.1rem;
 }
