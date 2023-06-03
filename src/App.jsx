@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../style.css";
 
 function App() {
-  const [comentarios, setComentarios] = useState([]);
-  const [nuevoComentario, setNuevoComentario] = useState("");
-  const [de, setDe] = useState("");
-  const [a, setA] = useState("");
+  const [comentarios, setComentarios] = useState(
+    localStorage.getItem(JSON.parse("comentarios")) || []
+  );
+  console.log(comentarios);
+  console.log(comentarios);
+  const [nuevoComentario, setNuevoComentario] = useState({
+    de: "",
+    a: "",
+    comentario: "",
+  });
 
-  const mapeo = comentarios.map((comentario, index) => (
-    <p key={index}>{comentario}</p>
+  const mapeo = comentarios.map((comment, index) => (
+    <div key={index}>
+      <p>{comment.de}</p>
+      <p>{comment.comentario}</p>
+      <p>{comment.a}</p>
+    </div>
   ));
 
-  useEffect(() => {
-    const comentariosGuardados = localStorage.getItem("comentarios");
-    if (comentariosGuardados) {
-      setComentarios(JSON.parse(comentariosGuardados));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("comentarios", JSON.stringify(comentarios));
-  }, [comentarios]);
-
-  const handleComentarioChange = (event) => {
-    setNuevoComentario(event.target.value);
-  };
-
-  const handleComentarioSubmit = (event) => {
-    event.preventDefault();
-
-    const comentario = `De: ${de} A: ${a}\n ${nuevoComentario}`;
-
-    setComentarios((prevComentarios) => {
-      const nuevosComentarios = [...prevComentarios, comentario];
-      return nuevosComentarios.slice(-3);
-    });
-
+  function handleForm(e) {
+    const { value, name } = e.target;
+    setNuevoComentario((oldState) => ({
+      ...oldState,
+      [name]: value,
+    }));
     setNuevoComentario("");
-    setDe("");
-    setA("");
-  };
+  }
+
+  function handleClick() {
+    const newState = [...comentarios, nuevoComentario];
+    setComentarios(newState);
+    localStorage.setItem("comentarios", JSON.stringify(comentarios));
+  }
+
+  setComentarios((prevComentarios) => {
+    const nuevosComentarios = [...prevComentarios, comentarios];
+    return nuevosComentarios.slice(-3);
+  });
 
   return (
     <div className="container">
@@ -49,34 +49,35 @@ function App() {
         alt="Imagen de una persona"
       />
       <h2 className="titulo">Somo los campeones</h2>
-      <form className="text-button">
+      <div className="text-button">
         <textarea
           className="textarea"
           placeholder="Escribe tu comentario aquí"
-          value={nuevoComentario}
-          onChange={handleComentarioChange}
+          value={nuevoComentario.comentario}
+          name="comentario"
+          onChange={handleForm}
           rows={3}
         />
-
         <div className="de-a">
           <input
             id="de"
             type="text"
             placeholder="De"
-            value={de}
-            onChange={(event) => setDe(event.target.value)}
+            name="de"
+            value={nuevoComentario.de}
+            onChange={handleForm}
           />
-          <br />
           <input
             id="a"
             type="text"
             placeholder="A"
-            value={a}
-            onChange={(event) => setA(event.target.value)}
+            value={nuevoComentario.a}
+            name="a"
+            onChange={handleForm}
           />
         </div>
-        <button onClick={handleComentarioSubmit}>Publicar</button>
-      </form>
+        <button onClick={handleClick}>Publicar</button>
+      </div>
       <h2 className="endosos">-Endosos-</h2>
       <div className="endoso">{mapeo}</div>
     </div>
