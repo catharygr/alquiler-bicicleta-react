@@ -2,44 +2,45 @@ import React, { useState } from "react";
 import "../style.css";
 
 function App() {
-  const [comentarios, setComentarios] = useState(
-    localStorage.getItem(JSON.parse("comentarios")) || []
-  );
-  console.log(comentarios);
-  console.log(comentarios);
+  const [comentarios, setComentarios] = useState([]);
   const [nuevoComentario, setNuevoComentario] = useState({
     de: "",
-    a: "",
     comentario: "",
+    a: "",
   });
 
-  const mapeo = comentarios.map((comment, index) => (
-    <div key={index}>
-      <p>{comment.de}</p>
-      <p>{comment.comentario}</p>
-      <p>{comment.a}</p>
-    </div>
-  ));
-
-  function handleForm(e) {
-    const { value, name } = e.target;
-    setNuevoComentario((oldState) => ({
-      ...oldState,
+  const handleComentario = (e) => {
+    const { name, value } = e.target;
+    setNuevoComentario((oldComentario) => ({
+      ...oldComentario,
       [name]: value,
     }));
-    setNuevoComentario("");
-  }
+  };
 
   function handleClick() {
-    const newState = [...comentarios, nuevoComentario];
-    setComentarios(newState);
-    localStorage.setItem("comentarios", JSON.stringify(comentarios));
-  }
+    const comentario = { ...nuevoComentario };
 
-  setComentarios((prevComentarios) => {
-    const nuevosComentarios = [...prevComentarios, comentarios];
-    return nuevosComentarios.slice(-3);
-  });
+    setComentarios((oldComentarios) => {
+      const nuevosComentarios = [comentario, ...oldComentarios].slice(0, 3);
+      return nuevosComentarios;
+    });
+
+    setNuevoComentario({ de: "", comentario: "", a: "" });
+
+    // localStorage
+    const comentariosGuardados = localStorage.getItem("comentarios");
+    const comentariosParseados = comentariosGuardados
+      ? JSON.parse(comentariosGuardados)
+      : [];
+    const nuevosComentariosLocalStorage = [
+      comentario,
+      ...comentariosParseados,
+    ].slice(0, 3);
+    localStorage.setItem(
+      "comentarios",
+      JSON.stringify(nuevosComentariosLocalStorage)
+    );
+  }
 
   return (
     <div className="container">
@@ -53,11 +54,12 @@ function App() {
         <textarea
           className="textarea"
           placeholder="Escribe tu comentario aquí"
-          value={nuevoComentario.comentario}
           name="comentario"
-          onChange={handleForm}
+          value={nuevoComentario.comentario}
+          onChange={handleComentario}
           rows={3}
         />
+
         <div className="de-a">
           <input
             id="de"
@@ -65,21 +67,33 @@ function App() {
             placeholder="De"
             name="de"
             value={nuevoComentario.de}
-            onChange={handleForm}
+            onChange={handleComentario}
           />
+
           <input
             id="a"
             type="text"
             placeholder="A"
-            value={nuevoComentario.a}
             name="a"
-            onChange={handleForm}
+            value={nuevoComentario.a}
+            onChange={handleComentario}
           />
         </div>
         <button onClick={handleClick}>Publicar</button>
       </div>
       <h2 className="endosos">-Endosos-</h2>
-      <div className="endoso">{mapeo}</div>
+      <div className="endoso">
+        {comentarios
+          .slice(0)
+          .reverse()
+          .map((comentario, index) => (
+            <p key={index}>
+              <strong>De:</strong> {comentario.de} <br />
+              <strong>{comentario.comentario}</strong> <br />
+              <strong>A:</strong> {comentario.a}
+            </p>
+          ))}
+      </div>
     </div>
   );
 }
