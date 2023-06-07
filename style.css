@@ -205,16 +205,3 @@ p {
   color: aliceblue;
   font-size: 1.1rem;
 }
-
-.meGusta-icon {
-  cursor: pointer;
-}
-
-.meGusta-icon i {
-  color: transparent;
-  transition: color 0.3s;
-}
-
-.meGusta-icon.active i {
-  color: red;
-}
