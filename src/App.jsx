@@ -18,7 +18,7 @@ function App() {
   };
 
   function handleClick() {
-    const comentario = { ...nuevoComentario, me_gusta: 0 };
+    const comentario = { ...nuevoComentario };
 
     setComentarios((oldComentarios) => {
       const nuevosComentarios = [comentario, ...oldComentarios].slice(0, 3);
@@ -42,14 +42,6 @@ function App() {
     );
   }
 
-  function handleMeGusta(index) {
-    setComentarios((oldComentarios) => {
-      const nuevosComentarios = [...oldComentarios];
-      nuevosComentarios[index].me_gusta += 1;
-      return nuevosComentarios;
-    });
-  }
-
   return (
     <div className="container">
       <img
@@ -57,7 +49,7 @@ function App() {
         src="./image/cathy.png"
         alt="Imagen de una persona"
       />
-      <h2 className="titulo">Somos los campeones</h2>
+      <h2 className="titulo">Somo los campeones</h2>
       <div className="text-button">
         <textarea
           className="textarea"
@@ -98,16 +90,7 @@ function App() {
             <p key={index}>
               <strong>De:</strong> {comentario.de} <br />
               <strong>{comentario.comentario}</strong> <br />
-              <strong>A:</strong> {comentario.a} <br />
-              <span
-                role="img"
-                aria-label="Me gusta"
-                className="corazon"
-                onClick={() => handleMeGusta(index)}
-              >
-                ❤️
-              </span>{" "}
-              {comentario.me_gusta}
+              <strong>A:</strong> {comentario.a}
             </p>
           ))}
       </div>
