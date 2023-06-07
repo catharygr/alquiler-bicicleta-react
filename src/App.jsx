@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaThumbsUp } from "react-icons/fa";
 import "../style.css";
 
 function App() {
@@ -8,6 +9,17 @@ function App() {
     comentario: "",
     a: "",
   });
+  const [contador, setContador] = useState(0);
+  const [meGusta, setMeGusta] = useState(false);
+
+  const manejarMeGusta = () => {
+    if (meGusta) {
+      setContador(contador - 1);
+    } else {
+      setContador(contador + 1);
+    }
+    setMeGusta(!meGusta);
+  };
 
   const handleComentario = (e) => {
     const { name, value } = e.target;
@@ -91,6 +103,13 @@ function App() {
               <strong>De:</strong> {comentario.de} <br />
               <strong>{comentario.comentario}</strong> <br />
               <strong>A:</strong> {comentario.a}
+              <button
+                className={meGusta ? "me-gusta-activo" : "me-gusta"}
+                onClick={manejarMeGusta}
+              >
+                <FaThumbsUp />
+                <span>{contador}</span>
+              </button>
             </p>
           ))}
       </div>

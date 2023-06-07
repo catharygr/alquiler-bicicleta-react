@@ -205,3 +205,30 @@ p {
   color: aliceblue;
   font-size: 1.1rem;
 }
+
+me-gusta {
+  display: flex;
+
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: gray;
+ 
+}
+
+.me-gusta-activo {
+  display: flex;
+  /* align-items: center; */
+  background-color: red
+  border: none;
+  color: white;
+
+}
+
+.me-gusta-activo:hover {
+  background-color: red
+}
+
+.me-gusta span {
+  margin-left: 5px;
+}
