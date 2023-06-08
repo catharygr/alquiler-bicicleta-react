@@ -12,23 +12,6 @@ function App() {
   const [meGustaLista, setMeGustaLista] = useState([]);
   const [contadorLista, setContadorLista] = useState([]);
 
-  const mapeo = comentarios
-    .map((comentario, index) => (
-      <p key={index}>
-        <strong>De:</strong> {comentario.de} <br />
-        <strong>{comentario.comentario}</strong> <br />
-        <strong>A:</strong> {comentario.a}
-        <div>
-          <button onClick={() => manejarMeGusta(index)}>
-            <span>{contadorLista[index]}</span>
-            <FaThumbsUp className="color" />
-          </button>
-        </div>
-      </p>
-    ))
-    .slice(0)
-    .reverse();
-
   const handleComentario = (e) => {
     const { name, value } = e.target;
     setNuevoComentario((oldComentario) => ({
@@ -132,7 +115,24 @@ function App() {
         </button>
       </div>
       <h2 className="endosos">-Endosos-</h2>
-      <div className="endoso">{mapeo}</div>
+      <div className="endoso">
+        {comentarios
+          .slice(0)
+          .reverse()
+          .map((comentario, index) => (
+            <div className="comentarios" key={index}>
+              <p>De: {comentario.de}</p>
+              <p>A: {comentario.a}</p>
+              <p>{comentario.comentario}</p>
+              <div>
+                <span>{contadorLista[index]}</span>
+                <button onClick={() => manejarMeGusta(index)}>
+                  <FaThumbsUp className="color" />
+                </button>
+              </div>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
