@@ -2,4 +2,4 @@
 
 https://github.com/catharygr/endosos-campeones-react
 
-## Aplicación hechja con React 18 y vite
+## Aplicación hecha con React 18 y vite
