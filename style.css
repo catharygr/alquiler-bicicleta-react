@@ -198,27 +198,11 @@ body {
 
 p {
   padding: 1.2rem;
-  border: 1px solid #ccc;
   border-radius: 4px;
   background-color: gray;
   width: 100%;
   color: aliceblue;
   font-size: 1.1rem;
-}
-
-.me-gusta {
-  display: flex;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-}
-
-.me-gusta-activo {
-  display: flex;
-  align-items: center;
-  border: none;
-  color: white;
-  cursor: pointer;
 }
 
 .color {

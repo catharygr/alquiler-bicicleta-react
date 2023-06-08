@@ -1,4 +1,3 @@
-/* eslint-disable no-dupe-else-if */
 import React, { useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import "../style.css";
@@ -10,17 +9,25 @@ function App() {
     comentario: "",
     a: "",
   });
-  const [contador, setContador] = useState(0);
-  const [meGusta, setMeGusta] = useState(false);
+  const [meGustaLista, setMeGustaLista] = useState([]);
+  const [contadorLista, setContadorLista] = useState([]);
 
-  const manejarMeGusta = () => {
-    if (meGusta) {
-      setContador(contador - 1);
-    } else {
-      setContador(contador + 1);
-    }
-    setMeGusta(!meGusta);
-  };
+  const mapeo = comentarios
+    .map((comentario, index) => (
+      <p key={index}>
+        <strong>De:</strong> {comentario.de} <br />
+        <strong>{comentario.comentario}</strong> <br />
+        <strong>A:</strong> {comentario.a}
+        <div>
+          <button onClick={() => manejarMeGusta(index)}>
+            <span>{contadorLista[index]}</span>
+            <FaThumbsUp className="color" />
+          </button>
+        </div>
+      </p>
+    ))
+    .slice(0)
+    .reverse();
 
   const handleComentario = (e) => {
     const { name, value } = e.target;
@@ -30,12 +37,40 @@ function App() {
     }));
   };
 
-  function handleClick() {
+  const manejarMeGusta = (index) => {
+    setContadorLista((oldContadores) => {
+      const nuevosContadores = [...oldContadores];
+      if (meGustaLista[index]) {
+        nuevosContadores[index] -= 1;
+      } else {
+        nuevosContadores[index] += 1;
+      }
+      return nuevosContadores;
+    });
+
+    setMeGustaLista((oldMeGusta) => {
+      const nuevosMeGusta = [...oldMeGusta];
+      nuevosMeGusta[index] = !nuevosMeGusta[index];
+      return nuevosMeGusta;
+    });
+  };
+
+  const handleClick = () => {
     const comentario = { ...nuevoComentario };
 
     setComentarios((oldComentarios) => {
       const nuevosComentarios = [comentario, ...oldComentarios].slice(0, 3);
       return nuevosComentarios;
+    });
+
+    setContadorLista((oldContadores) => {
+      const nuevosContadores = [0, ...oldContadores];
+      return nuevosContadores;
+    });
+
+    setMeGustaLista((oldMeGusta) => {
+      const nuevosMeGusta = [false, ...oldMeGusta];
+      return nuevosMeGusta;
     });
 
     setNuevoComentario({ de: "", comentario: "", a: "" });
@@ -53,7 +88,7 @@ function App() {
       "comentarios",
       JSON.stringify(nuevosComentariosLocalStorage)
     );
-  }
+  };
 
   return (
     <div className="container">
@@ -62,7 +97,7 @@ function App() {
         src="./image/cathy.png"
         alt="Imagen de una persona"
       />
-      <h2 className="titulo">Somo los campeones</h2>
+      <h2 className="titulo">Somos los campeones</h2>
       <div className="text-button">
         <textarea
           className="textarea"
@@ -97,24 +132,7 @@ function App() {
         </button>
       </div>
       <h2 className="endosos">-Endosos-</h2>
-      <div className="endoso">
-        {comentarios
-          .slice(0)
-          .reverse()
-          .map((comentario, index) => (
-            <p key={index}>
-              <strong>De:</strong> {comentario.de} <br />
-              <strong>{comentario.comentario}</strong> <br />
-              <strong>A:</strong> {comentario.a}
-              <div>
-                <button onClick={manejarMeGusta}>
-                  <span>{contador}</span>
-                  <FaThumbsUp className="color" />
-                </button>
-              </div>
-            </p>
-          ))}
-      </div>
+      <div className="endoso">{mapeo}</div>
     </div>
   );
 }
