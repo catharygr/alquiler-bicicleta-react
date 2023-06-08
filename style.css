@@ -173,7 +173,7 @@ body {
   width: 100%;
 }
 
-button {
+.btn {
   text-align: center;
   padding: 1.5rem;
   border-radius: 7px;
@@ -197,7 +197,7 @@ button {
 }
 
 p {
-  padding: 2rem;
+  padding: 1.2rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: gray;
@@ -206,29 +206,21 @@ p {
   font-size: 1.1rem;
 }
 
-me-gusta {
+.me-gusta {
   display: flex;
-
   align-items: center;
-  background-color: transparent;
   border: none;
-  color: gray;
- 
+  cursor: pointer;
 }
 
 .me-gusta-activo {
   display: flex;
-  /* align-items: center; */
-  background-color: red
+  align-items: center;
   border: none;
   color: white;
-
+  cursor: pointer;
 }
 
-.me-gusta-activo:hover {
-  background-color: red
-}
-
-.me-gusta span {
-  margin-left: 5px;
+.color {
+  color: red;
 }

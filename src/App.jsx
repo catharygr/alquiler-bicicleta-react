@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-else-if */
 import React, { useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import "../style.css";
@@ -91,7 +92,9 @@ function App() {
             onChange={handleComentario}
           />
         </div>
-        <button onClick={handleClick}>Publicar</button>
+        <button className="btn" onClick={handleClick}>
+          Publicar
+        </button>
       </div>
       <h2 className="endosos">-Endosos-</h2>
       <div className="endoso">
@@ -103,13 +106,12 @@ function App() {
               <strong>De:</strong> {comentario.de} <br />
               <strong>{comentario.comentario}</strong> <br />
               <strong>A:</strong> {comentario.a}
-              <button
-                className={meGusta ? "me-gusta-activo" : "me-gusta"}
-                onClick={manejarMeGusta}
-              >
-                <FaThumbsUp />
-                <span>{contador}</span>
-              </button>
+              <div>
+                <button onClick={manejarMeGusta}>
+                  <span>{contador}</span>
+                  <FaThumbsUp className="color" />
+                </button>
+              </div>
             </p>
           ))}
       </div>
